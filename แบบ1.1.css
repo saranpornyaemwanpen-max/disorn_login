@@ -1,0 +1,99 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* พื้นหลังจำลองจากรูปที่ 2 */
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1920x1080'); 
+    background-size: cover;
+}
+
+/* สไตล์หน้า Login */
+.login-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 15px;
+    width: 350px;
+    text-align: center;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 25px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    background: white;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* สไตล์หน้า Loading (ตามรูปที่ 1) */
+.loading-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-card {
+    background: #0047AB; /* สีน้ำเงินเข้มตามรูป */
+    padding: 40px;
+    border-radius: 30px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.status-text {
+    background: white;
+    padding: 10px;
+    border-radius: 20px;
+    color: black;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.percentage {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.progress-container {
+    background: rgba(255,255,255,0.3);
+    border-radius: 15px;
+    height: 20px;
+    width: 100%;
+}
+
+.progress-bar {
+    background: #62f2ff; /* สีฟ้าสว่างตามรูป */
+    height: 100%;
+    width: 0%;
+    border-radius: 15px;
+    transition: width 0.1s;
+}
