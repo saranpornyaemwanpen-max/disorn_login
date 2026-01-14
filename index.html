@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Page</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      /* พื้นหลัง */
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                  url("https://via.placeholder.com/1920x1080");
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* ✅ ทำให้ form ไม่ดัน layout */
+    #loginForm {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* =======================
+      Login Box
+    ======================= */
+    .login-box {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+
+      padding: 40px;
+      border-radius: 15px;
+      width: 350px;
+      text-align: center;
+      color: white;
+
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .login-box h1 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 14px;
+      margin: 10px 0;
+
+      border-radius: 25px;
+      border: 1px solid rgba(255,255,255,0.25);
+      outline: none;
+
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .input-group input::placeholder {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .input-group input:focus {
+      border-color: rgba(255,255,255,0.7);
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.15);
+    }
+
+    /* =======================
+      Options
+    ======================= */
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      font-size: 13px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+
+    .options label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .options a {
+      color: rgba(255,255,255,0.9);
+      text-decoration: none;
+    }
+
+    .options a:hover {
+      text-decoration: underline;
+    }
+
+    /* =======================
+      Button
+    ======================= */
+    button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 25px;
+      border: none;
+
+      background: white;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+
+      margin-top: 15px;
+      transition: transform 0.05s ease, opacity 0.2s ease;
+    }
+
+    button:hover {
+      opacity: 0.92;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    /* =======================
+      Register text
+    ======================= */
+    .register-text {
+      margin-top: 18px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .register-text a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .register-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* =======================
+      Loading Overlay
+    ======================= */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .loading-card {
+      background: #0047ab;
+      padding: 40px;
+      border-radius: 30px;
+
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .status-text {
+      background: white;
+      padding: 10px;
+      border-radius: 20px;
+
+      color: black;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+
+    .percentage {
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .progress-container {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 15px;
+      height: 20px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      background: #62f2ff;
+      height: 100%;
+      width: 0%;
+      border-radius: 15px;
+      transition: width 0.1s;
+    }
+
+    /* =======================
+      Responsive
+    ======================= */
+    @media (max-width: 420px) {
+      .login-box {
+        width: 92%;
+        padding: 28px;
+      }
+
+      .loading-card {
+        width: 92%;
+        padding: 28px;
+      }
+
+      .options {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ✅ FORM เพื่อกด Enter ได้ -->
+  <form id="loginForm">
+    <div id="login-container" class="login-box">
+      <h1>Login</h1>
+
+      <div class="input-group">
+        <input type="text" placeholder="Username" id="kay" required />
+      </div>
+
+      <div class="input-group">
+        <input type="password" placeholder="Password" id="27012008" required />
+      </div>
+
+      <div class="options">
+        <label><input type="checkbox" /> Remember Me</label>
+        <a href="#">Forgot Password</a>
+      </div>
+
+      <!-- ✅ submit จะทำให้ Enter ใช้ได้ -->
+      <button id="loginBtn" type="submit">Login</button>
+
+      <p class="register-text">
+        Don't have an account? <a href="#">Register</a>
+      </p>
+    </div>
+  </form>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen" class="loading-overlay" style="display: none;">
+    <div class="loading-card">
+      <div class="status-text">กำลังเข้าสู่ระบบ</div>
+      <div class="percentage" id="percentText">0%</div>
+
+      <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ✅ กด Enter หรือกด Login จะเรียก handleLogin()
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault(); // กันรีเฟรชหน้า
+      handleLogin();
+    });
+
+    function handleLogin() {
+      // 1) ซ่อนหน้า Login และแสดงหน้า Loading
+      document.getElementById("login-container").style.display = "none";
+      document.getElementById("loading-screen").style.display = "flex";
+
+      const bar = document.getElementById("myBar");
+      const text = document.getElementById("percentText");
+
+      let width = 0;
+
+      // 2) จำลองโหลดให้ครบ 100% ภายใน 2 วินาที
+      const interval = setInterval(() => {
+        if (width >= 100) {
+          clearInterval(interval);
+
+          // 3) เปลี่ยนหน้าเมื่อโหลดเสร็จ
+          window.location.href = "https://disorn-glitch.github.io/disorn_menu/"; // เปลี่ยน URL ได้
+          return;
+        }
+
+        width += 2;
+        bar.style.width = width + "%";
+        text.innerHTML = width + "%";
+      }, 40);
+    }
+  </script>
+
+
+</body>
+</html>
